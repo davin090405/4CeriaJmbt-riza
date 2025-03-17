@@ -207,15 +207,10 @@ document.addEventListener("DOMContentLoaded", function() {
                     }
                 }
 
-                // Event listener for province selection
                 document.getElementById('province').addEventListener('change', function() {
                     const provinceId = this.value;
                     const provinceName = this.options[this.selectedIndex].text;
-
-                    // Update the hidden province input
                     document.getElementById('provinceIn').value = provinceName;
-
-                    // Populate cities based on the selected province
                     populateCities(provinceId);
                 });
 

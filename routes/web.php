@@ -1,6 +1,10 @@
 <?php
+
+use App\Http\Controllers\ArsitekController;
 use App\Http\Controllers\Index;
 use App\Http\Controllers\CariRumahController;
+use App\Http\Controllers\BeliMaterialController;
+use App\Http\Controllers\ForumProjectController;
 use App\Http\Controllers\ProvinceController;
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\ContactController;
@@ -11,12 +15,24 @@ use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ArsitekAdminController;
 
 Route::get('/', [Index::class, 'index'])->name('index');
 
 
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/dashboard', function () {
+        $user = Auth::user();
+        if ($user->role_type === 'arsitek') {
+            return redirect()->route('users-page.adminArsitek');
+        } elseif ($user->role_type === 'kontraktor') {
+            return redirect()->route('kontraktor.dashboard'); // Jika ada kontraktor
+        } else {
+            return view('dashboard'); // Halaman user biasa
+        }
+    })->name('dashboard');
+});
 
-Route::get('/dashboard', [HouseController::class, 'dashboard'])->middleware(['auth', 'verified'])->name('cariRumah');
 
 Route::get('/dashboard/getRegion/{provinceId}', [HouseController::class, 'getRegion'])->middleware(['auth', 'verified'])->name('dashboard-getRegions');
 
@@ -75,6 +91,15 @@ Route::middleware(['permission:contact-edit'])->group(function(){
 });
 
 
+// arsitek
+Route::middleware(['auth', 'role:arsitek'])->group(function () {
+    Route::get('/arsitek/admin', [ArsitekAdminController::class, 'index'])
+        ->name('users-page.adminArsitek');
+});
+
+
+
+
 Route::middleware('auth')->group(function () {
 
     Route::get('/house/view/{id}', [HouseController::class, 'viewHouse'])->name('house.view');
@@ -87,8 +112,14 @@ Route::middleware('auth')->group(function () {
     
 
 
-    //houses
-    
+  
+
+    Route::get('/forum-project', [ForumProjectController::class, 'index'])->name('forumProject');
+   
+    Route::get('/arsitek', [ArsitekController::class, 'index'])->name('arsitek');
+    Route::get('/arsitek/{id}', [ArsitekController::class, 'show'])->name('arsitek.detail');
+    Route::get('/beli-material', [BeliMaterialController::class, 'index'])->name('beliMaterial');
+
     Route::get('/create_house_form', [HouseController::class, 'formCreateHouse'])->name('house.create.form');
     Route::post('/create_house', [HouseController::class, 'createHouse'])->name('house.create');
     Route::get('/house_edit_form/{id}',[HouseController::class, 'formEditHouse'])->name('house.edit.form');

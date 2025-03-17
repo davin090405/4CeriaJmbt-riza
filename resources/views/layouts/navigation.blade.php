@@ -26,8 +26,11 @@
             <li><a href="{{route('index')}}">Home</a></li>
             <li><a href="{{route('cariRumah')}}">Cari Rumah</a></li>
             <li><a href="{{route('house.create.form')}}">Jual Rumah</a></li>
-            <li><a href="{{route('house.create.form')}}">Arsitek</a></li>
-            <li><a href="{{route('house.create.form')}}">Bahan Bangunan</a></li>
+            <li><a href="{{ route('arsitek') }}">Arsitek</a></li>
+            <li><a href="{{ route('beliMaterial') }}">Kontraktor</a></li>
+            <li><a href="{{ route('forumProject') }}">Forum Project</a></li>
+
+
         </ul>
     </div>
     <style>
@@ -321,8 +324,7 @@
     <li><a href="{{ route('profile.edit', 1) }}">Profile</a></li>
     <li><a href="{{ route('profile.edit', 2) }}">Rumah Dijual</a></li>
     <li><a href="{{ route('profile.edit', 3) }}">About Us</a></li>
-    <li><a href="{{ route('profile.edit', 4) }}">Arsitek</a></li>
-    <li><a href="{{ route('profile.edit', 5) }}">Bahan Bangunan</a></li>
+
 </ul>
 
         <li> <form action="{{route('logout')}}" method="POST">

@@ -4,10 +4,12 @@
     padding: 0;
     box-sizing: border-box;
     scroll-behavior: smooth;
-   
 }
 
+body {
+    overflow-x: hidden;
 
+}
 .sticky_parent {
     
     height: 500vh;
@@ -82,10 +84,7 @@
     overflow: hidden;
     max-width: 100%;
 }
-body {
-    background-color: #ffffff;
-    max-width: 100%;
-}
+
 .navbar {
     background-color: white;
     display: flex;
@@ -128,7 +127,7 @@ body {
 
 .kiriNavbar ul li a {
     text-decoration: none;
-    color: #0f172a;
+    color: #1e1e1e;
     font-size: 14px;
     transition: 0.3s ease;
     border-radius: 10px;
@@ -173,14 +172,17 @@ body {
    padding: 40px;
    background-color: #fd1d1d;
    justify-content: center;
-   text-align: center;
-   align-items: center;
    display: flex;
    flex-direction: column;
    position: relative;
    overflow: hidden;
+   color: white;
 }
+.header h3{
+font-size: 18;
+opacity: 0.8;
 
+}
 @keyframes kananKiriOpasitas {
     to {
        scale: 1 1;
@@ -238,33 +240,46 @@ body {
 .kalimat span {
     color: #fff;
 }
-.kalimat p {
-    color: #fff;
-    max-width: 600px;
-    flex-wrap: wrap;
-    margin-top: 2%;
-    line-height: 1.9;
-    letter-spacing: 0.5px;
-    font-size: 15px;
-}
-  
+
 .kalimat {
     color: #fd1d1d;
     z-index: 2;
-    line-height: 1.4;
+    line-height: 1.05;
+    margin-top: 40px;
 }
 .kalimat h2 {
-    font-size: 58px;
+    font-size: 64px;
+    animation: kiriKanan 1s ease;
 }
 .kalimat h1 {
-  font-size: 65px;
+  font-size: 72px;
+  animation: kiriKanan 1s ease forwards;
+  animation-delay: 0.6s;
+  opacity: 0;
+}
+.kalimat h3 {
+  animation: kiriKanan 1s ease;
 }
 .kalimat h2 span {
     color: #fff;
-   font-size: 72px;
+   font-size: 78px;
    text-shadow: 0 0 10px white;
 }
-
+.kalimatKedua {
+    display: flex;
+    width: 70%;
+    margin-top: 40px;
+    font-size: 16px;
+    font-weight: 500;
+}
+.kalimatKedua button {
+    background-color: white;
+    color: #fd1d1d;
+    padding: 15px 22.5px;
+    font-size: 15px;
+    border-radius: 8px;
+    
+}
 .profile {
     display: flex;
     gap: 9px;
@@ -334,7 +349,7 @@ body {
 }
 
 .dropdown-content .profile h3 {
-    color: black;
+    color: #1e1e1e;
     margin: 0;
 }
 
@@ -349,7 +364,7 @@ body {
 }
 
 .dropdown-content ul li a {
-    color: black;
+    color: #1e1e1e;
     text-decoration: none;
     width: 80%;
     padding: 2px 4px;
@@ -459,12 +474,12 @@ body {
 .kelompokKedua {
     background-color: #fd1d1d;
     width: 100%;
-    padding: 50px;
+    padding: 60px 20px 60px 20px;
     height: 590px;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 20px;
+    gap: 80px;
     color: white;
     border-radius: 4px;
     position: relative;
@@ -484,16 +499,22 @@ justify-content: space-between;
     display: flex;
     flex-direction: column;
     gap: 20px;
+    line-height: 1.1;
 }
 .kalimatKiriAtas h1{
     animation: kiriKanan ease;
     animation-timeline: view();
     animation-range: entry 0% cover 40% ;
-    font-size: 67px;
+    font-size: 63px;
+    font-weight: 800;
+}
+.kalimatKiriAtas h1 span{
+   font-weight: 999;
+   font-size: 82px;
 }
 .kalimatKiriAtas p{
-
-    font-size: 18px;
+    font-weight: 500;
+    font-size: 20px;
     animation: kiriKanan ease-in-out;
     animation-timeline: view();
     animation-range: entry 0% cover 35% ;
@@ -502,7 +523,8 @@ justify-content: space-between;
     display: flex;
     align-items: center;
     gap: 1%;
-    font-size: 15px;
+    font-size: 18px;
+    font-weight: 500;
 }
 .kalimatKiriBawah img {
     animation: kiriKanan ease-in-out;
@@ -522,7 +544,6 @@ justify-content: space-between;
 }
 .bagianKananbgmerah {
     display: flex;
-    margin: auto;
     width: 45%;
     height: 100%;
     gap: 9%;
@@ -579,13 +600,21 @@ justify-content: space-between;
 }
 
 .kanansatu img, .kanansatu1 img, .kananDua img, .kananDua1 img{
-    background-color: rgba(255, 255, 255, 0.6);
+   
     padding: 3px;
     border-radius: 12px;
 }
 .judulkanansatu, .judulkanansatu1 {
     gap: 4%;
     align-items: center;
+}
+.judulkanansatu h2, .judulkanansatu1 h2{
+  font-size: 26px;
+  font-weight: 700;
+}
+.textkanansatu p, .textkanansat1 p{
+  font-size: 16px;
+  font-weight: 500;
 }
 .indukKanan1 .judulkanansatu, .indukKanan2 .judulkanansatu1 {
 display: flex;
@@ -665,7 +694,7 @@ display: flex;
 
 .kelompokKetiga h1 {
     font-size: 150px;
-    font-weight: 700;
+    font-weight: 999;
     letter-spacing: 0.95;
   margin: 0 0 240px 0px;
     color: #1e1e1e;
@@ -744,9 +773,12 @@ display: flex;
     padding: 10px;
     z-index: 1;
     opacity: 1;
-  
+    transition: transform 0.5s ease-in-out, opacity 0.3s ease-in-out;
 }
-
+.adniasasdasd {
+    position: relative;
+    z-index: 2; /* Gambar berada di atas teks */
+}
 .is-fixed {
     mix-blend-mode: multiply;
 }
@@ -1026,6 +1058,117 @@ display: flex;
 .tombolCta h3 {
 font-size: 15px;
 }
+
+
+
+
+footer {
+    width: 100%;
+    height: 360px;
+    background-color: #1e1e1e;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 50px 50px 10px 50px;
+    color: white;
+}
+.atasFooter {
+    display: flex;
+    gap: 5%;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+.footerList {
+    display: flex;
+    gap: 150px;
+}
+.isiFooterList ul{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.footerList .isiFooterList li, .isiFooterList li {
+    list-style: none;
+}
+.footerStart {
+    display: flex;
+    flex-direction: column;
+   padding-top: 0;
+}
+.footerStart h2{
+    font-size: 80px;
+    font-weight: 700;
+}
+.footerStart h3{
+    font-size: 16px;
+    font-weight: 200;
+}
+.bawahFooter {
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid #ffffff40;
+    padding-top: 20px;
+}
+.bawahFooter ul {
+    display: flex;
+    list-style: none;
+   
+}
+.term {
+    display: flex;
+    gap: 30px;
+}
+.logoSosmed {
+    gap: 30px;
+    display: flex;
+    
+}
+.footerEnd {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+   
+}
+.footerEnd h2 {
+   font-weight: 400;
+   font-size: 22px;
+   margin-bottom: 16px;
+}
+.footerEnd input {
+  width: 100%;
+  background: #27272a;
+  padding: 18px 8px;
+  border-radius: 14px;
+  border: none;
+  margin-bottom: 10px;
+}
+.footerEnd button {
+    padding: 15px 8px;
+    border-radius: 15px;
+    border: none;
+    font-weight:500;
+    font-size: 15px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 @media screen and (max-width: 768px) {

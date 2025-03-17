@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
+use App\Models\Arsitek;
+
 
 class LoginRequest extends FormRequest
 {
@@ -45,6 +47,7 @@ class LoginRequest extends FormRequest
         $loginField = filter_var($credentials['login'], FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
         $credentials[$loginField] = $credentials['login'];
         unset($credentials['login']);
+
         if (! Auth::attempt($credentials, $this->boolean('remember'))) {
             RateLimiter::hit($this->throttleKey());
 
@@ -52,7 +55,17 @@ class LoginRequest extends FormRequest
                 'login' => trans('auth.failed'),
             ]);
         }
-
+        $user = Auth::user();
+        $selectedRole = $this->input('role_type1');
+        
+        if ($selectedRole !== $user->role_type) {
+            Auth::logout();
+            throw ValidationException::withMessages([
+                'login' => 'Anda tidak memiliki akses ke peran yang dipilih.',
+            ]);
+        }
+        
+        session(['role_type1' => $user->role_type]);
         RateLimiter::clear($this->throttleKey());
     }
 

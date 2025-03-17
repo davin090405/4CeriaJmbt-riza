@@ -34,19 +34,32 @@ class RegisteredUserController extends Controller
             'username' => ['required', 'string', 'max:255', 'unique:'.User::class],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'role_type' => ['required', 'in:user,arsitek'], // Tambahkan validasi role
         ]);
-
+        
         $user = User::create([
             'name' => $request->name,
             'username' =>$request->username,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'role_type' => $request->role_type,
         ]);
+
+        if ($request->role_type === 'arsitek') {
+            $user->assignRole('arsitek');
+        } else {
+            $user->assignRole('user');
+        }
 
         event(new Registered($user));
 
         Auth::login($user);
 
-        return redirect(route('cariRumah', absolute: false));
+        if ($user->hasRole('arsitek')) {
+            return redirect()->route('users-page.adminArsitek');
+        } else {
+            return redirect()->route('index');
+        }
+        
     }
 }
